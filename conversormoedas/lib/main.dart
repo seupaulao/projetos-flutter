@@ -66,53 +66,11 @@ class _HomeState extends State<Home> {
                              crossAxisAlignment: CrossAxisAlignment.stretch,
                              children: <Widget>[
                                Icon(Icons.account_balance, size: 150,color: Colors.amber,),
-                               TextField(
-                                 controller: _dolar,
-                                 onChanged: (item) {
-                                       double valor = double.parse(item);
-                                       double real = valor * precoDolar;
-                                       setState(() {
-                                         _euro.text = (real / precoEuro).toStringAsFixed(2);
-                                         _real.text = real.toStringAsFixed(2);
-                                       });
-                                 },
-                                 keyboardType: TextInputType.number,
-                                 decoration: InputDecoration(
-                                   labelText: "Dolar",
-                                   labelStyle: TextStyle(color: Colors.amber)
-                                 ),
-                               ),
-                               TextField(
-                                 controller: _euro,
-                                 onChanged: (item) {
-                                       double valor = double.parse(item);
-                                       double real = valor * precoEuro;
-                                       setState(() {
-                                         _dolar.text = (real / precoDolar).toStringAsFixed(2);
-                                         _real.text = real.toStringAsFixed(2);
-                                       });
-                                 },
-                                 keyboardType: TextInputType.number,
-                                 decoration: InputDecoration(
-                                   labelText: "Euro",
-                                   labelStyle: TextStyle(color: Colors.amber)
-                                 ),
-                               ),
-                               TextField(
-                                 controller: _real,
-                                 onChanged: (item) {
-                                       double valor = double.parse(item);
-                                       setState(() {
-                                         _dolar.text = (valor / precoDolar).toStringAsFixed(2);
-                                         _euro.text = (valor / precoEuro).toStringAsFixed(2);
-                                       });
-                                 },
-                                 keyboardType: TextInputType.number,
-                                 decoration: InputDecoration(
-                                   labelText: "Real",
-                                   labelStyle: TextStyle(color: Colors.amber)
-                                 ),
-                               ),
+                               campoTextoMoeda("Dolar", _dolar, _calcularValorDolar),
+                               Divider(),
+                               campoTextoMoeda("Euro", _euro, _calcularValorEuro),
+                               Divider(),
+                               campoTextoMoeda("Real",_real,_calcularValorReal),
                              ],
                            ),
                          );
@@ -122,4 +80,39 @@ class _HomeState extends State<Home> {
           )
       ));
     }
+
+    void _calcularValorReal(String item)
+    {
+          double valor = double.parse(item);
+          _dolar.text = (valor / precoDolar).toStringAsFixed(2);
+          _euro.text = (valor / precoEuro).toStringAsFixed(2);
+    }
+    void _calcularValorEuro(String item)
+    {
+          double valor = double.parse(item);
+          double real = valor * precoEuro;
+
+          _dolar.text = (real / precoDolar).toStringAsFixed(2);
+          _real.text = real.toStringAsFixed(2);
+    }
+    void _calcularValorDolar(String item)
+    {
+         double valor = double.parse(item);
+         double real = valor * precoDolar;
+         _euro.text = (real / precoEuro).toStringAsFixed(2);
+         _real.text = real.toStringAsFixed(2);
+    }
+
+  }
+
+  Widget campoTextoMoeda(String rotulo, TextEditingController controlador, Function funcao){
+    return TextField(
+                                 controller: controlador,
+                                 onChanged: funcao,
+                                 keyboardType: TextInputType.number,
+                                 decoration: InputDecoration(
+                                   labelText: "Real",
+                                   labelStyle: TextStyle(color: Colors.amber)
+                                 ),
+                               );
   }
