@@ -7,3 +7,5 @@
 #### dados biblicos
 
 #### conversor de moedas
+
+#### regra de 3
