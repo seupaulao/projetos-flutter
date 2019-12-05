@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'leitura.dart';
 import 'quantitativo.dart';
 import 'dicionario.dart';
-import 'dart:convert';
+import 'pesquisar.dart';
 
 void main() {
   runApp(
@@ -14,37 +14,12 @@ void main() {
         '/leitura':(context) => TelaLeitura() ,
         '/quantitativo':(context) => TelaQuantitativo() ,
         '/dicionario':(context) => TelaDicionario() ,
+        '/pesquisar':(context) => TelaPesquisar() ,
       },
     )
   );
 }
 
-/*
-leitura e analise : realizar a leitura e ao clicar no verso a análise:
-   1. referência cruzada
-   2. referência strong do verso com análise gramatical e de possiveis significados
-   3. analisar verso, buscar no dicionário
-   4. contar quantidade de palavras no original grego
-   5. contar quantidade de palavras na versão blv
-
-dados quantitativos : resumo quantitativo da biblia
-
-  1. Numero de livros
-  2. Numero de capitulos
-  3. Numero de versos
-  4. Numero de palavras
-  5. Lista
-        Livro     numero de capitulos    numero de versos     numero de palavras
-  6. Maior livro     numero de capitulos     numero de versos
-  7. Menor livro     numero de capitulos     numero de versos
-  8. Maior capitulo     numero de versos     numero de palavras
-  9. Menor capitulo     numero de versos     numero de palavras
-  10. Maior verso
-  11. Menor verso
-
-dicionário : buscar no catálogo ou buscar palavra
-
- */
 class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -85,6 +60,13 @@ class TelaInicial extends StatelessWidget {
                   Navigator.pushNamed(context, '/dicionario');
               },
             ),
+            RaisedButton(
+              color: Colors.green,
+              child: Text('Pesquisar Palavra/Texto'),
+              onPressed: () {
+                 Navigator.pushNamed(context, '/pesquisar');
+              },
+            )
           ],
         ),
         )

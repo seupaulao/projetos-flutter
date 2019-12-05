@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//dicionário : buscar no catálogo ou buscar palavra
+
 class TelaDicionario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
