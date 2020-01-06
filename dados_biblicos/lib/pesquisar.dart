@@ -21,7 +21,26 @@ class TelaPesquisar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Pesquisar Palavra ou Texto"),
+        ),
+        body: _componentePesquisar(context),
+      ),
     );
   }
+}
+
+Widget _componentePesquisar(BuildContext context)
+{
+  return Column(
+    children: <Widget>[
+      RaisedButton(
+        child: Text("Voltar"),
+          onPressed: () {
+            Navigator.pop(context);
+        },
+      )
+    ],
+  );
 }
